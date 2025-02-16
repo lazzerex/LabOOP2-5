@@ -1,0 +1,7 @@
+E:\[HỌC TẬP]\Lab04-OOP\Lab04-OOP\bin\Debug\Lab04-OOP.exe.config
+E:\[HỌC TẬP]\Lab04-OOP\Lab04-OOP\bin\Debug\Lab04-OOP.exe
+E:\[HỌC TẬP]\Lab04-OOP\Lab04-OOP\bin\Debug\Lab04-OOP.pdb
+E:\[HỌC TẬP]\Lab04-OOP\Lab04-OOP\obj\Debug\Lab04-OOP.csproj.AssemblyReference.cache
+E:\[HỌC TẬP]\Lab04-OOP\Lab04-OOP\obj\Debug\Lab04-OOP.csproj.CoreCompileInputs.cache
+E:\[HỌC TẬP]\Lab04-OOP\Lab04-OOP\obj\Debug\Lab04-OOP.exe
+E:\[HỌC TẬP]\Lab04-OOP\Lab04-OOP\obj\Debug\Lab04-OOP.pdb
