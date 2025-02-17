@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -27,60 +27,51 @@ namespace Lab03_OOP
         private float real;
         private float imaginary;
 
-        // Getter và Setter cho real
         public float Real
         {
             get => real;
             set => real = value;
         }
 
-        // Getter và Setter cho imaginary
         public float Imaginary
         {
             get => imaginary;
             set => imaginary = value;
         }
 
-        // Constructor không tham số
         public ComplexNumber()
         {
             real = 0;
             imaginary = 0;
         }
 
-        // Constructor có tham số
         public ComplexNumber(float real, float imaginary)
         {
             this.real = real;
             this.imaginary = imaginary;
         }
 
-        // Copy constructor
-        public ComplexNumber(ComplexNumber c)
+        public ComplexNumber(ComplexNumber c)           // copy constructor
         {
             this.real = c.real;
             this.imaginary = c.imaginary;
         }
 
-        // In số phức
         public void Print()
         {
             Console.WriteLine($"({real} + {imaginary}i)");
         }
 
-        // Phép cộng 2 số phức
         public ComplexNumber Add(ComplexNumber other)
         {
             return new ComplexNumber(this.real + other.real, this.imaginary + other.imaginary);
         }
 
-        // Phép trừ 2 số phức
         public ComplexNumber Subtract(ComplexNumber other)
         {
             return new ComplexNumber(this.real - other.real, this.imaginary - other.imaginary);
         }
 
-        // Phép nhân 2 số phức
         public ComplexNumber Multiply(ComplexNumber other)
         {
             float newReal = this.real * other.real - this.imaginary * other.imaginary;
@@ -88,7 +79,6 @@ namespace Lab03_OOP
             return new ComplexNumber(newReal, newImaginary);
         }
 
-        // Phép chia 2 số phức
         public ComplexNumber Divide(ComplexNumber other)
         {
             float denominator = other.real * other.real + other.imaginary * other.imaginary;
@@ -102,25 +92,23 @@ namespace Lab03_OOP
             return new ComplexNumber(newReal, newImaginary);
         }
 
-        // Tính module số phức
         public float Module()
         {
             return (float)Math.Sqrt(real * real + imaginary * imaginary);
         }
 
-        // Tính argument (góc) của số phức (theo radian)
         public float Argument()
         {
             return (float)Math.Atan2(imaginary, real);
         }
 
-        // Cộng số phức với các số thực (default params)
+        // phức+ thực (default params)
         public ComplexNumber Add(float x, float y = 0, float z = 0)
         {
             return new ComplexNumber(this.real + x + y + z, this.imaginary);
         }
 
-        // Cộng nhiều số phức (rest params)
+        // nhiều số phức (rest params)
         public ComplexNumber AddMultiple(params ComplexNumber[] numbers)
         {
             float sumReal = this.real;
@@ -140,48 +128,78 @@ namespace Lab03_OOP
         static void Main(string[] args)
         {
             Console.OutputEncoding = Encoding.UTF8;
-            // Tạo mảng số phức
-            ComplexNumber[] complexNumbers = new ComplexNumber[4];
-            complexNumbers[0] = new ComplexNumber(1, 2);
-            complexNumbers[1] = new ComplexNumber(3, 4);
-            complexNumbers[2] = new ComplexNumber(0, 1);
-            complexNumbers[3] = new ComplexNumber(2, -3);
 
-            // Test các phương thức
+            ComplexNumber[] complexNumbers = new ComplexNumber[4];
+            complexNumbers[0] = new ComplexNumber(10, 21);
+            complexNumbers[1] = new ComplexNumber(-4, 6);
+            complexNumbers[2] = new ComplexNumber(0, 9);
+            complexNumbers[3] = new ComplexNumber(2, -2);
             Console.WriteLine("Các số phức trong mảng:");
             for (int i = 0; i < complexNumbers.Length; i++)
             {
+                Console.Write($"Số phức [{i}] = ");
                 complexNumbers[i].Print();
             }
-
-            Console.WriteLine("\nPhép cộng hai số phức:");
+            Console.WriteLine("\ncộng hai số phức:");
+            Console.Write("Số phức [0] = ");
+            complexNumbers[0].Print();
+            Console.Write("Số phức [1] = ");
+            complexNumbers[1].Print();
+            Console.Write("Kết quả [0] + [1] = ");
             (complexNumbers[0].Add(complexNumbers[1])).Print();
 
-            Console.WriteLine("\nPhép trừ hai số phức:");
-            (complexNumbers[0].Subtract(complexNumbers[1])).Print();
+            Console.WriteLine("\ntrừ hai số phức:");
+            Console.Write("Số phức [2] = ");
+            complexNumbers[2].Print();
+            Console.Write("Số phức [3] = ");
+            complexNumbers[3].Print();
+            Console.Write("Kết quả [2] - [3] = ");
+            (complexNumbers[2].Subtract(complexNumbers[3])).Print();
 
-            Console.WriteLine("\nPhép nhân hai số phức:");
+            Console.WriteLine("\nnhân hai số phức:");
+            Console.Write("Số phức [0] = ");
+            complexNumbers[0].Print();
+            Console.Write("Số phức [1] = ");
+            complexNumbers[1].Print();
+            Console.Write("Kết quả [0] * [1] = ");
             (complexNumbers[0].Multiply(complexNumbers[1])).Print();
 
-            Console.WriteLine("\nPhép chia hai số phức:");
-            (complexNumbers[0].Divide(complexNumbers[1])).Print();
+            Console.WriteLine("\nchia hai số phức:");
+            Console.Write("Số phức [1] = ");
+            complexNumbers[1].Print();
+            Console.Write("Số phức [3] = ");
+            complexNumbers[3].Print();
+            Console.Write("Kết quả [1] / [3] = ");
+            (complexNumbers[1].Divide(complexNumbers[3])).Print();
 
-            Console.WriteLine("\nModule của số phức thứ nhất:");
-            Console.WriteLine(complexNumbers[0].Module());
+            Console.WriteLine("\nModule của số phức:");
+            Console.Write("Số phức [0] = ");
+            complexNumbers[0].Print();
+            Console.WriteLine($"Module = {complexNumbers[0].Module()}");
 
-            Console.WriteLine("\nArgument của số phức thứ nhất (radian):");
-            Console.WriteLine(complexNumbers[0].Argument());
+            Console.WriteLine("\nArgument của số phức (radian):");
+            Console.Write("Số phức [0] = ");
+            complexNumbers[0].Print();
+            Console.WriteLine($"Argument = {complexNumbers[0].Argument()}");
 
-            Console.WriteLine("\nCộng số phức với một số thực:");
-            (complexNumbers[0].Add(2)).Print();
-
-            Console.WriteLine("\nCộng số phức với hai số thực:");
-            (complexNumbers[0].Add(2, 3)).Print();
-
-            Console.WriteLine("\nCộng số phức với ba số thực:");
-            (complexNumbers[0].Add(2, 3, 4)).Print();
+            Console.WriteLine("\nCộng số phức với các số thực:");
+            Console.Write("Số phức [0] = ");
+            complexNumbers[0].Print();
+            Console.Write("Cộng với 3: ");
+            (complexNumbers[0].Add(3)).Print();
+            Console.Write("Cộng với 3 và 5: ");
+            (complexNumbers[0].Add(3, 5)).Print();
+            Console.Write("Cộng với 3, 5 và 8: ");
+            (complexNumbers[0].Add(3, 5, 8)).Print();
 
             Console.WriteLine("\nCộng nhiều số phức:");
+            Console.WriteLine("Các số phức tham gia phép cộng:");
+            for (int i = 0; i < complexNumbers.Length; i++)
+            {
+                Console.Write($"Số phức [{i}] = ");
+                complexNumbers[i].Print();
+            }
+            Console.Write("Kết quả tổng = ");
             (complexNumbers[0].AddMultiple(complexNumbers[1], complexNumbers[2], complexNumbers[3])).Print();
         }
     }
