@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 
 /* Lab 05 */
 /*
@@ -96,7 +97,8 @@ namespace Lab05_OOP
 
         public IVector CrossProduct(IVector vector)
         {
-            throw new NotImplementedException("Cross product is not defined for 2D vectors");
+            Console.WriteLine("không có tích có hướng cho vector 2d");
+            return null; 
         }
 
         public object Clone()
@@ -208,10 +210,8 @@ namespace Lab05_OOP
             Random random = new Random();
             List<IVector> vectors = new List<IVector>();
             List<Vector2D> vector2Ds = new List<Vector2D>();
-            List<Vector3D> vector3Ds = new List<Vector3D>();
-
-            // Tạo ngẫu nhiên các vector
-            for (int i = 0; i < 3; i++)
+            List<Vector3D> vector3Ds = new List<Vector3D>();          
+            for (int i = 0; i < 2; i++)
             {
                 Vector2D v2d = new Vector2D(random.NextDouble() * 10, random.NextDouble() * 10);
                 Vector3D v3d = new Vector3D(random.NextDouble() * 10, random.NextDouble() * 10, random.NextDouble() * 10);
@@ -222,32 +222,33 @@ namespace Lab05_OOP
                 vector3Ds.Add(v3d);
             }
 
-            // In ra các vector ban đầu
             Console.WriteLine("Các vector ban đầu:");
             PrintVectors(vectors);
 
-            // Sắp xếp vectors theo độ dài
+ 
             vectors.Sort();
             Console.WriteLine("\nCác vector sau khi sắp xếp theo độ dài:");
             PrintVectors(vectors);
 
-            // Thực hiện các phép toán với Vector2D
+           
             if (vector2Ds.Count >= 2)
             {
                 Console.WriteLine("\nThực hiện các phép toán với Vector2D:");
                 Vector2D v2d1 = vector2Ds[0];
                 Vector2D v2d2 = vector2Ds[1];
+               
 
                 Console.WriteLine("Vector2D 1 + Vector2D 2 = " + v2d1.Add(v2d2));
+                
                 Console.WriteLine("Vector2D 1 - Vector2D 2 = " + v2d1.Subtract(v2d2));
                 Console.WriteLine("Vector2D 1 * 2 = " + v2d1.Multiply(2));
                 Console.WriteLine("Vector2D 1 / 2 = " + v2d1.Divide(2));
                 Console.WriteLine("Độ dài Vector2D 1 = " + v2d1.Length().ToString("F2"));
                 Console.WriteLine("Vector2D 1 chuẩn hóa = " + v2d1.Normalize());
                 Console.WriteLine("Tích vô hướng Vector2D 1 và 2 = " + v2d1.DotProduct(v2d2).ToString("F2"));
+                //Console.WriteLine(v2d1.CrossProduct(v2d2));
             }
-
-            // Thực hiện các phép toán với Vector3D
+            
             if (vector3Ds.Count >= 2)
             {
                 Console.WriteLine("\nThực hiện các phép toán với Vector3D:");
@@ -263,8 +264,7 @@ namespace Lab05_OOP
                 Console.WriteLine("Tích vô hướng Vector3D 1 và 2 = " + v3d1.DotProduct(v3d2).ToString("F2"));
                 Console.WriteLine("Tích có hướng Vector3D 1 và 2 = " + v3d1.CrossProduct(v3d2));
             }
-
-            // Test chuyển đổi Vector2D sang Vector3D
+         
             if (vector2Ds.Count > 0)
             {
                 Console.WriteLine("\nChuyển đổi Vector2D sang Vector3D:");
@@ -277,11 +277,11 @@ namespace Lab05_OOP
 
         public static void PrintVectors(List<IVector> vectors)
         {
-            Console.WriteLine("Tọa độ\t\t\tĐộ dài");
-            Console.WriteLine("------------------------");
+            Console.WriteLine("Tọa độ" + "".PadRight(20) + "Độ dài");
+            Console.WriteLine("--------------------------------");
             foreach (IVector vector in vectors)
             {
-                Console.WriteLine("{0}\t\t{1:F2}", vector, vector.Length());
+                Console.WriteLine("{0,-25}{1,6:F2}", vector, vector.Length());
             }
         }
 
