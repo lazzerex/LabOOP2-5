@@ -106,10 +106,10 @@ namespace Lab02_OOP
             vectors.Add(new Vector2D(1, 0));
             vectors.Add(new Vector2D(1, 0));
 
-            Console.WriteLine("Danh sách các vector:");
+            Console.WriteLine("Danh sách các vector:"); 
             for (int i = 0; i < vectors.Count; i++)
             {
-                Console.WriteLine(vectors[i].Print());
+                Console.WriteLine($"Vector{i+1}: " + vectors[i].Print());
             }
 
             // truc giao
