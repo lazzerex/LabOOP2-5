@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-/*** Lab 03 ***
+/*** Lab 04 ***
 Một lớp AVector có các phương thức:
 - ShowInfo: hiển thị thông tin của lớp
 - Add: cộng 2 AVector
@@ -231,45 +231,82 @@ namespace Lab04_OOP
     {
         static void Main(string[] args)
         {
-            List<AVector> vectors = new List<AVector>();
-
-            // Thêm Vector2D
-            vectors.Add(new Vector2D(1, 2));
-            vectors.Add(new Vector2D(3, 4));
-
-            // Thêm Vector3D
-            vectors.Add(new Vector3D(1, 2, 3));
-            vectors.Add(new Vector3D(4, 5, 6));
-
-            // In thông tin các vector
-            Console.WriteLine("Danh sach cac vector:");
+            Console.OutputEncoding = Encoding.Unicode;
+            List<AVector> vectors = new List<AVector>();          
+            vectors.Add(new Vector2D(6, 2));
+            vectors.Add(new Vector2D(-3, 4));
+            vectors.Add(new Vector3D(3, -1, 5));
+            vectors.Add(new Vector3D(9, 3, -7));         
+            Console.WriteLine("Danh sách các vector:");
             for (int i = 0; i < vectors.Count; i++)
             {
                 Console.WriteLine(vectors[i].ShowInfo());
             }
 
-            // Test các phép toán giữa Vector2D
-            Console.WriteLine("\nPhep toan giua Vector2D:");
-            AVector result2D = vectors[0].Add(vectors[1]);
-            if (result2D != null)
-            {
-                Console.WriteLine("Tong: " + result2D.ShowInfo());
-            }
+          
+            Console.WriteLine("\nCác phép toán giữa Vector2D:");
 
-            // Test các phép toán giữa Vector3D
-            Console.WriteLine("\nPhep toan giua Vector3D:");
-            AVector result3D = vectors[2].Add(vectors[3]);
-            if (result3D != null)
-            {
-                Console.WriteLine("Tong: " + result3D.ShowInfo());
-            }
+          
+            AVector add2D = vectors[0].Add(vectors[1]);
+            if (add2D != null)
+                Console.WriteLine("Tổng: " + add2D.ShowInfo());
 
-            // Test tích vô hướng và góc
-            Console.WriteLine("\nTich vo huong Vector2D:");
-            Console.WriteLine(vectors[0].Dot(vectors[1]));
+           
+            AVector sub2D = vectors[0].Sub(vectors[1]);
+            if (sub2D != null)
+                Console.WriteLine("Hiệu: " + sub2D.ShowInfo());
 
-            Console.WriteLine("\nGoc giua hai Vector3D (radian):");
-            Console.WriteLine(vectors[2].Angle(vectors[3]));
+            
+            AVector mul2D = vectors[0].Mul(vectors[1]);
+            if (mul2D != null)
+                Console.WriteLine("Tích: " + mul2D.ShowInfo());
+
+           
+            AVector div2D = vectors[0].Div(vectors[1]);
+            if (div2D != null)
+                Console.WriteLine("Thương: " + div2D.ShowInfo());
+
+          
+            Console.WriteLine("Tích vô hướng: " + vectors[0].Dot(vectors[1]));
+
+            
+            Console.WriteLine("Độ dài vector 1: " + vectors[0].Module());
+            Console.WriteLine("Độ dài vector 2: " + vectors[1].Module());
+
+           
+            Console.WriteLine("Góc giữa hai vector (radian): " + vectors[0].Angle(vectors[1]));
+
+           
+            Console.WriteLine("\nCác phép toán giữa Vector3D:");
+
+            
+            AVector add3D = vectors[2].Add(vectors[3]);
+            if (add3D != null)
+                Console.WriteLine("Tổng: " + add3D.ShowInfo());
+
+            
+            AVector sub3D = vectors[2].Sub(vectors[3]);
+            if (sub3D != null)
+                Console.WriteLine("Hiệu: " + sub3D.ShowInfo());
+
+            
+            AVector mul3D = vectors[2].Mul(vectors[3]);
+            if (mul3D != null)
+                Console.WriteLine("Tích: " + mul3D.ShowInfo());
+
+          
+            AVector div3D = vectors[2].Div(vectors[3]);
+            if (div3D != null)
+                Console.WriteLine("Thương: " + div3D.ShowInfo());
+
+            Console.WriteLine("Tích vô hướng: " + vectors[2].Dot(vectors[3]));
+
+            
+            Console.WriteLine("Độ dài vector 1: " + vectors[2].Module());
+            Console.WriteLine("Độ dài vector 2: " + vectors[3].Module());
+
+            
+            Console.WriteLine("Góc giữa hai vector (radian): " + vectors[2].Angle(vectors[3]));
         }
     }
 }
