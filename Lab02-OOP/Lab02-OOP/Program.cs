@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,58 +31,52 @@ namespace Lab02_OOP
         private float x;
         private float y;
 
-        // Constructor không tham số
         public Vector2D()
         {
             x = 0;
             y = 0;
         }
 
-        // Constructor có tham số
         public Vector2D(float x, float y)
         {
             this.x = x;
             this.y = y;
         }
 
-        // Getter và Setter cho x
         public float X
         {
             get => x;
             set => x = value;
         }
 
-        // Getter và Setter cho y
         public float Y
         {
             get => y;
             set => y = value;
         }
-
-        // In thông tin vector
         public string Print()
         {
             return $"Vector2D<x: {x}, y: {y}>";
         }
 
-        // Kiểm tra hai vector có trực giao không
+        
         public bool TrucGiao(Vector2D b)
         {
-            // Tích vô hướng = 0 thì trực giao
+            // vô hướng = 0 => trực giao
             float tichVoHuong = this.x * b.x + this.y * b.y;
             return tichVoHuong == 0;
         }
 
-        // Tính độ dài vector
+        
         public float DoDai()
         {
             return (float)Math.Sqrt(x * x + y * y);
         }
 
-        // Tính góc giữa 2 vector (radian)
+        
         public float Goc(Vector2D b)
         {
-            // cos(α) = (a·b)/(|a|·|b|)
+            // cong thuc: cos(α) = (a·b)/(|a|·|b|)
             float tichVoHuong = this.x * b.x + this.y * b.y;
             float doDaiA = this.DoDai();
             float doDaiB = b.DoDai();
@@ -99,33 +93,43 @@ namespace Lab02_OOP
     {
         static void Main(string[] args)
         {
-
-            // Tạo List các vector
+            Console.OutputEncoding = Encoding.Unicode;
+            
             List<Vector2D> vectors = new List<Vector2D>();
 
-            // Thêm các vector vào list
+           
+            vectors.Add(new Vector2D(5, 12));
+            vectors.Add(new Vector2D(-5, 1));
+            vectors.Add(new Vector2D(3.1f, 8.5f));
+            vectors.Add(new Vector2D(3, 5));
+            vectors.Add(new Vector2D(-5, 3));
             vectors.Add(new Vector2D(1, 0));
-            vectors.Add(new Vector2D(0, 1));
-            vectors.Add(new Vector2D(2, 2));
+            vectors.Add(new Vector2D(1, 0));
 
-            // Test các chức năng
-            Console.WriteLine("Danh sach cac vector:");
+            Console.WriteLine("Danh sách các vector:");
             for (int i = 0; i < vectors.Count; i++)
             {
                 Console.WriteLine(vectors[i].Print());
             }
 
-            // Kiểm tra trực giao
-            Console.WriteLine("\nKiem tra truc giao giua vector 1 va 2:");
+            // truc giao
+            Console.WriteLine("\nKiểm tra trực giao vector 1 và 2:");
             Console.WriteLine(vectors[0].TrucGiao(vectors[1]));
+            Console.WriteLine("\nKiểm tra trực giao vector 4 và 5:");
+            Console.WriteLine(vectors[3].TrucGiao(vectors[4]));
 
-            // Tính độ dài
-            Console.WriteLine("\nDo dai cua vector 3:");
+            //do dai
+            Console.WriteLine("\nĐộ dài của vector 1:");
+            Console.WriteLine(vectors[0].DoDai());
+            Console.WriteLine("\nĐộ dài của vector 3:");
             Console.WriteLine(vectors[2].DoDai());
+            
 
-            // Tính góc
-            Console.WriteLine("\nGoc giua vector 1 va 2 (radian):");
+            //goc
+            Console.WriteLine("\nGóc giữa vector 1 và 2 (radian):");
             Console.WriteLine(vectors[0].Goc(vectors[1]));
+            Console.WriteLine("\nGóc giữa vector 6 và 7 (radian):");
+            Console.WriteLine(vectors[5].Goc(vectors[6]));
         }
 
     }
